@@ -3,6 +3,7 @@ import { useLogs } from '../hooks/useLogs'
 import { useLang } from '../context/LanguageContext'
 import { ArrowLeft, Flame } from 'lucide-react'
 import { StreakBadge } from '../components/StreakBadge'
+import { Check, Diamond, X } from 'lucide-react'
 
 const DAY_LABELS = {
   en: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
@@ -25,9 +26,9 @@ export const History = ({ onBack }) => {
   }
 
   const getDayEmoji = (status) => {
-    if (status === 'full')    return '✅'
-    if (status === 'partial') return '🔶'
-    if (status === 'none')    return '❌'
+    if (status === 'full')    return <Check className="text-green-400" />
+    if (status === 'partial') return <Diamond className="text-yellow-400" />
+    if (status === 'none')    return <X className="text-red-400" />
     return ''
   }
 
@@ -48,11 +49,11 @@ export const History = ({ onBack }) => {
       {/* Streak card */}
       <div className="bg-gray-800 border border-gray-700 rounded-2xl p-5 mb-6 flex items-center justify-between">
         <div>
-          <p className="text-gray-400 text-sm mb-1">Current streak</p>
+          <p className="text-gray-400 text-sm mb-1">{t.currentStreak}</p>
           <div className="flex items-center gap-2">
             <Flame size={28} className="text-orange-400" />
             <span className="text-4xl font-bold text-white">{streak}</span>
-            <span className="text-gray-400 text-lg">days</span>
+            <span className="text-gray-400 text-lg">{t.days}</span>
           </div>
         </div>
         <StreakBadge streak={streak} />
@@ -61,12 +62,12 @@ export const History = ({ onBack }) => {
       {/* Last 7 days */}
       <div className="bg-gray-800 border border-gray-700 rounded-2xl p-5 mb-6">
         <p className="text-gray-400 text-sm font-medium uppercase tracking-wider mb-4">
-          Last 7 days
+          {t.last7Days}
         </p>
         <div className="grid grid-cols-7 gap-2">
           {last7.map(dateStr => {
             const status = getDayStatus(dateStr, habits)
-            const dayName = DAY_LABELS[lang][new Date(dateStr + 'T00:00:00').getDay()]
+            const dayName = t.dayLabels[new Date(dateStr + 'T00:00:00').getDay()]
             const dayNum = new Date(dateStr + 'T00:00:00').getDate()
             const isToday = dateStr === new Date().toISOString().split('T')[0]
 
@@ -89,9 +90,9 @@ export const History = ({ onBack }) => {
         {/* Legend */}
         <div className="flex gap-4 mt-4 flex-wrap">
           {[
-            { color: 'bg-violet-500', label: 'All done' },
-            { color: 'bg-yellow-500/40', label: 'Partial' },
-            { color: 'bg-gray-800 border border-gray-700', label: 'Missed' },
+            { color: 'bg-violet-500', label: t.allDone },
+            { color: 'bg-yellow-500/40', label: t.partial },
+            { color: 'bg-gray-800 border border-gray-700', label: t.missed },
           ].map(item => (
             <div key={item.label} className="flex items-center gap-2">
               <div className={`w-3 h-3 rounded-sm ${item.color}`} />
@@ -104,10 +105,10 @@ export const History = ({ onBack }) => {
       {/* Per habit breakdown */}
       <div className="bg-gray-800 border border-gray-700 rounded-2xl p-5">
         <p className="text-gray-400 text-sm font-medium uppercase tracking-wider mb-4">
-          This week per habit
+          {t.thisWeekPerHabit}
         </p>
         {habits.length === 0 ? (
-          <p className="text-gray-600 text-center py-4">No habits yet</p>
+          <p className="text-gray-600 text-center py-4">{t.noHabitsYet}</p>
         ) : (
           <div className="space-y-4">
             {habits.map(habit => {

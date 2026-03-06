@@ -1,4 +1,4 @@
-import { Trash2 } from 'lucide-react'
+import { Trash2, CircleCheckIcon } from 'lucide-react'
 import { useLang } from '../context/LanguageContext'
 
 export const HabitCard = ({ habit, completed, onComplete, onDelete }) => {
@@ -23,7 +23,7 @@ export const HabitCard = ({ habit, completed, onComplete, onDelete }) => {
       {/* Right side — button or checkmark */}
       <div className="flex items-center gap-2">
         {completed ? (
-          <span className="text-green-400 text-xl">✅</span>
+          <span className="text-green-400 text-xl"><CircleCheckIcon /></span>
         ) : (
           <button
             onClick={() => onComplete(habit)}

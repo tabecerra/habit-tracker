@@ -47,7 +47,7 @@ export const ConfirmDialog = ({ habit, onConfirm, onCancel }) => {
                 onClick={onConfirm}
                 className="flex-1 py-2 rounded-xl bg-green-600 hover:bg-green-500 text-white font-semibold transition-colors"
               >
-                {t.confirm} ✅
+                {t.confirm} 
               </button>
             </div>
           </>

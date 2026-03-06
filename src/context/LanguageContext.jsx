@@ -27,6 +27,16 @@ const translations = {
     of: "of",
     comingSoon: "Coming soon...",
     yourHabitName: "Your habit name",
+    currentStreak: "Current streak",
+    days: "days",
+    last7Days: "Last 7 days",
+    allDone: "All done",
+    allDoneCelebration: "All done! 🎉",
+    partial: "Partial",
+    missed: "Missed",
+    thisWeekPerHabit: "This week per habit",
+    noHabitsYet: "No habits yet",
+    dayLabels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
   },
   es: {
     title: "Hábitos de Hoy",
@@ -54,6 +64,16 @@ const translations = {
     of: "de",
     comingSoon: "Próximamente...",
     yourHabitName: "Nombre de tu hábito",
+    currentStreak: "Racha actual",
+    days: "días",
+    last7Days: "Últimos 7 días",
+    allDone: "Todo hecho",
+    allDoneCelebration: "¡Todo hecho! 🎉",
+    partial: "Parcial",
+    missed: "Perdido",
+    thisWeekPerHabit: "Esta semana por hábito",
+    noHabitsYet: "Sin hábitos aún",
+    dayLabels: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
   }
 }
 
