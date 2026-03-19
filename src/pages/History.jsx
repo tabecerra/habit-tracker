@@ -1,6 +1,7 @@
 import { useHabits } from '../hooks/useHabits'
 import { useLogs } from '../hooks/useLogs'
 import { useLang } from '../context/LanguageContext'
+import { getLocalDateStr } from '../utils/date'
 import { ArrowLeft, Flame } from 'lucide-react'
 import { StreakBadge } from '../components/StreakBadge'
 import { Check, Diamond, X } from 'lucide-react'
@@ -69,7 +70,7 @@ export const History = ({ onBack }) => {
             const status = getDayStatus(dateStr, habits)
             const dayName = t.dayLabels[new Date(dateStr + 'T00:00:00').getDay()]
             const dayNum = new Date(dateStr + 'T00:00:00').getDate()
-            const isToday = dateStr === new Date().toISOString().split('T')[0]
+            const isToday = dateStr === getLocalDateStr()
 
             return (
               <div key={dateStr} className="flex flex-col items-center gap-1">

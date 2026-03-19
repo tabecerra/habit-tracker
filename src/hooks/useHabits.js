@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { getItem, setItem } from '../utils/storage'
+import { getLocalDateStr } from '../utils/date'
 import { v4 as uuidv4 } from 'uuid'
 
 export const useHabits = () => {
@@ -10,7 +11,7 @@ export const useHabits = () => {
             id: uuidv4(),
             name,
             emoji,
-            createdAt: new Date().toISOString().split('T')[0]
+            createdAt: getLocalDateStr()
         }
         const updated = [...habits, newHabit]
         setHabits(updated)

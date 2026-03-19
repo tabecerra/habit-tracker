@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { getItem, setItem } from '../utils/storage'
+import { getLocalDateStr } from '../utils/date'
 
 export const useLogs = () => {
     const [logs, setLogs] = useState(() => getItem('logs', []))
 
-    const today = new Date().toISOString().split('T')[0]
+    const today = getLocalDateStr()
 
     const completeHabit = (habitId) => {
         const alreadyLogged = logs.find(
@@ -28,7 +29,7 @@ export const useLogs = () => {
         let streak = 0
         let date = new Date()
       
-        const todayStr = date.toISOString().split('T')[0]
+        const todayStr = getLocalDateStr(date)
         const allDoneToday = allHabits.every(h =>
           logs.some(l => l.habitId === h.id && l.date === todayStr)
         )
@@ -37,7 +38,7 @@ export const useLogs = () => {
         }
       
         while (true) {
-          const dateStr = date.toISOString().split('T')[0]
+          const dateStr = getLocalDateStr(date)
       
           const allDone = allHabits.every(h =>
             logs.some(l => l.habitId === h.id && l.date === dateStr)
@@ -57,7 +58,7 @@ export const useLogs = () => {
         for (let i = 6; i >= 0; i--) {
           const date = new Date()
           date.setDate(date.getDate() - i)
-          days.push(date.toISOString().split('T')[0])
+          days.push(getLocalDateStr(date))
         }
         return days
       }
